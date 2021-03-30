@@ -26,12 +26,17 @@ pipeline {
                             stage('Unit Test') {
                            steps {
                                 echo "Running the unit test..."
-                           }
+                              }
                            }
                             stage('Integration test') {
                               steps {
                                 echo "Running the integration test..."
                               }
+                           }
+                           stage('Final check') {
+                             steps {
+                               echo "unit test,integration test and final check are running parallelly"
+                               }
                            }
                            }
                            }
