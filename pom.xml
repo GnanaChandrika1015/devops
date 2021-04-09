@@ -1,9 +1,0 @@
-<project xmlns="http://maven.apache.org/POM/3.6.3"   
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-  xsi:schemaLocation="http://maven.apache.org/POM/3.6.3   
-http://maven.apache.org/xsd/maven-3.6.3.xsd">  
-  <modelVersion>3.6.3</modelVersion>  
-  <groupId>com.javatpoint.application1</groupId>  
-  <artifactId>my-app</artifactId>  
-  <version>1</version>  
-</project>  
