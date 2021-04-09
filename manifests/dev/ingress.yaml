@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/secure-backends: "false"
+  name: dispatch-msg-ingest-service-ingress-with-wc-tls-lb
+  namespace: bat-dev
+spec:
+  rules:
+  - host: dispatch-msg-ingest-service.mil-dev-lbr-001.dev
+    http:
+      paths:
+      - backend:
+          serviceName: dispatch-msg-ingest-service
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+    - dispatch-msg-ingest-service.mil-dev-lbr-001.dev
+    secretName: wildcard-secret

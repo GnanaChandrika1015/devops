@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "dispatch-msg-ingest-service-deployment"
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: "dispatch-msg-ingest-service-selector"
+    spec:
+      imagePullSecrets:
+        - name: tpdservice-devops-image-pull-secret
+      containers:
+        - name: dispatch-msg-ingest-service
+          image: gbs-bat-devops-prod-docker-local.artifactory.swg-devops.com:443/dispatch-msg-ingest-service:latest
+          imagePullPolicy: Always
+          env:
+          - name: debug.log.enabled
+            value: "false"
+          - name: business.validation.enabled
+            value: "true"
+          - name: scylla.asyncWrite.batchSize
+            value: "8000"
+          - name: scylla.asyncWrite.timeout
+            value: "15000"
+          - name: scylla.slowQueryLatencyThreshold
+            value: "100"   
+          - name: asyncWrite
+            value: "true"
+          - name: scylla.asyncRead.timeout
+            value: "15000"
+          - name: config.server.url
+            value: "http://tpd-config-server.msdeploy-fra.svc.cluster.local:8080"
+          - name: activeProfile
+            value: "prod-fra"
+          readinessProbe:
+            httpGet:
+             path: /greeting
+             port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+      nodeSelector:
+        deployment: frankfurt
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi

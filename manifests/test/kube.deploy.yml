@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "dispatch-msg-ingest-service-deployment"
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "dispatch-msg-ingest-service-selector"
+    spec:
+      hostAliases:
+        - ip: "10.144.109.172"
+          hostnames:
+          - "scylla01.test.mil01.bat.cloud"
+        - ip: "10.144.109.190"
+          hostnames:
+          - "scylla02.test.mil01.bat.cloud"    
+      imagePullSecrets:
+        - name: tpdservice-devops-image-pull-secret
+      containers:
+        - name: dispatch-msg-ingest-service
+          image: gbs-bat-devops-test-env-docker-local.artifactory.swg-devops.com/dispatch-msg-ingest-service:latest
+          env:
+          - name: KAFKA_BROKER
+            value: "kafka-0.kafka-headless.kafka-rep3.svc.cluster.local:9092,kafka-1.kafka-headless.kafka-rep3.svc.cluster.local:9092,kafka-2.kafka-headless.kafka-rep3.svc.cluster.local:9092"
+          - name: SCYLLA_DB
+            value: "scylla01.test.mil01.bat.cloud,scylla02.test.mil01.bat.cloud"
+          - name: SCYLLA_PORT
+            value: "9042"
+          - name: SCYLLA_DB_USER_ID
+            value: "kafcons"
+          - name: SCYLLA_DB_PASSWORD
+            value: "@%$lk*&we@45"            
+          - name: kafka.producer.timeout.interval
+            value: "100"
+          - name: kafka.producer.retry.topic.max.retry.count
+            value: "5"
+          - name: debug.log.enabled
+            value: "true"
+          - name: business.validation.enabled
+            value: "true"
+          - name: nontpd.uid.stripping.enabled
+            value: "true"
+          - name: DC_LOCATION
+            value: "TST"
+          - name: SCYLLA_TTL
+            value: "1830"
+          - name: PERFORM_HASH_VALIDATION
+            value: "true"
+          - name: SCYLLA_LOOKUP_KEYSPACE
+            value: "bat_tpd_pri_msg"                                                
+          readinessProbe:
+            httpGet:
+             path: /greeting
+             port: 8080
+            initialDelaySeconds: 70
+      nodeSelector:
+        deployment: test
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi

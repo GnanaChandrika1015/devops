@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <servers>
+    <server>
+      <username>nanaroju@in.ibm.com</username>
+      <password>AKCp5btLFiXsxrmqavJt4omq8vpGhsqsQ1yP8GxnA6sDoJrZQ75gHWgBwsDQNdXhAhGzShgtf</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>nanaroju@in.ibm.com</username>
+      <password>AKCp5btLFiXsxrmqavJt4omq8vpGhsqsQ1yP8GxnA6sDoJrZQ75gHWgBwsDQNdXhAhGzShgtf</password>
+      <id>snapshots</id>
+    </server>
+  </servers>
+   <distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>gbs-bat-devops</name>
+        <url>https://eu.artifactory.swg-devops.com:443/artifactory/gbs-bat-devops-poc-maven-local</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>gbs-bat-devops</name>
+        <url>https://https://eu.artifactory.swg-devops.com:443/artifactory/gbs-bat-devops-poc-snapshot-maven-local</url>
+    </snapshotRepository>
+</distributionManagement>
+  <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://10.144.141.215:9000/sonar</sonar.host.url>
+                <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+                <sonar.java.binaries>target/classes</sonar.java.binaries>
+                <sonar.projectKey>master</sonar.projectKey>
+            </properties>
+        </profile>
+</profiles>
+</settings>

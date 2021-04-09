@@ -1,0 +1,41 @@
+{ "dispatch":
+	{
+		"messageHeader": {
+			"sourceMessageID": "SOURCE_MSG_ID_9999",
+            "testFlag": 1,
+            "primaryRepositoryID": "1234567-1234-456-463746384",
+            "messageHash": "UT_MSG_HASH_f8006785668bcd21ff",            
+            "apiInitiatedTime":"2018-09-30 05:00:00.0",
+			"clientAppName":"UT-BAT-TPD"
+		},
+		"messageType": "3-3",
+		"eoid": "test_eoid-UT9999",
+		"eventTime": "18093005",
+		"fid": "test_fid_UT9999",
+		"destinationID1": 2,
+		"destinationID2": "UT_Facility ID 2",
+		"destinationID3": ["Facility ID 1","Facility ID 2","Facility ID 3"],
+		"destinationID4": ["Facility ID 11","Facility ID 22","Facility ID 33"],
+		"destinationID5": "destinationID5",
+		"transportMode": 3,
+		"transportVehicle": "UT_VEHICLE",
+		"transportCont1": 1,
+		"transportCont2": "001234560000000018",
+		"transportS1": 1,
+		"transportS2": "99887766554411",
+		"emcs": 1,
+		"emcsARC": "15GB0123456789ABCDEF0",
+		"saad": 1,
+		"saadNumber": "abcdef12345",
+		"expDeclaration": 1,
+		"expDeclarationNumber": "UT_DEC_NUMBER_11IT9876AB88901235",
+		"uiType": 3,
+		"upUIs": ["68911cae-1668-4e76-903a-6523a338a3fc19041401","68911cae-1668-4e76-903a-6523a338a3aa19041401",        			
+        			"?68911cae-1668-4e76-903a-6523a338a3pp19041401","68911cae-1668-4e76-903a-6523a338a3ee19041401",
+        			"?68911cae-1668-4e76-903a-6523a338a3nn19041401",
+        			"?68911cae-1668-4e76-903a-6523a338a3oo19041401","68911cae-1668-4e76-903a-6523a338a3ll19041401"],
+		"aUIs": ["AUI68911cae-1668-4e76-903a-6523a3381111","AUI68911cae-1668-4e76-903a-6523a3382222",
+					"AUI68911cae-1668-4e76-903a-6523a3383333","AUI68911cae-1668-4e76-903a-6523a3384444"],
+		"dispatchComment": "UT_DISPATCH_Comments by the reporting entity"
+	}
+}
