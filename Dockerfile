@@ -1,4 +1,5 @@
-FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
-MAINTAINER "IBM BAT Applciation Team"
-COPY target/gs-maven-0.1.0.jar /opt/lib/
-EXPOSE 8081
+FROM java:8
+WORKDIR /
+ADD gs-maven-0.1.0.jar
+EXPOSE 8080
+CMD java - jar gs-maven-0.1.0.jar
