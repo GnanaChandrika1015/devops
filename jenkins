@@ -13,7 +13,9 @@ pipeline {
                  }
                  stage('Three') {
                  when {
-                  branch "master"
+                  not {
+                      branch "master"
+                  }
                  }
                  steps {
                        echo "Hello"
