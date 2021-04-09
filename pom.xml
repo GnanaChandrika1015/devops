@@ -4,4 +4,5 @@
 <groupId>com.bat.tpd.primarydb</groupId>
 <artifactId>dispatch-msg-ingest-service</artifactId>
 <version>1.0.0.RELEASE</version>
-<packaging>jar</packaging
+  <packaging>jar</packaging>
+</project>
